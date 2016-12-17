@@ -1,12 +1,3 @@
-allprojects {
-	apply plugin: 'base'
-	apply plugin: 'maven-publish'
-
-	repositories {
-	    mavenCentral()
-	}
-}
-
 buildscript {
 	repositories {
 	    mavenCentral()
@@ -16,7 +7,46 @@ buildscript {
 	
 	}
 }
+
+allprojects {
+	apply plugin: 'base'
+	apply plugin: 'maven-publish'
+
+	repositories {
+	    mavenCentral()
+	}
+}
+
+subprojects {
+	plugins.withType(JavaPlugin) {
+		sourceSets {
+			intgTest {
+				java.srcDirs = ['src/main/java', 'src/it/java']
+				resources.srcDirs = ['src/it/resources']
+			}
+		}
+	}
+}
 	
 
 ext.xActv4Version="4.0"
+ext.perf4jVersion="0.9.16"
+ext.commonsJexlVersion="1.1" 
 ext.slf4jVersion="1.7.16"
+ext.log4jVersion="1.2.17"
+ext.aspectjWeaverVersion="1.8.9" 
+ext.junitVersion="4.12"
+ext.mockitoVersion="1.10.19"
+ext.dozermapperVersion="5.5.1"
+ext.commonsLangVersion="2.6"
+ext.springVersion="4.2.7.RELEASE"
+ext.springDataVersion="1.11.6.RELEASE"
+ext.springDataJPAVersion="1.9.6.RELEASE"
+ext.hibernateVersion="5.1.0.Final"
+ext.javaxServletVersion="3.1.0"
+ext.sqljdbcVersion="4.0"
+ext.aspectJVersion="1.8.9"
+ext.jacksonVersion="2.8.1"
+ext.ehcacheVersion="2.10.3"
+ext.commonsIOVersion="2.4"
+ext.mockitoVersion="1.10.19"

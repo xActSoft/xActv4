@@ -5,7 +5,7 @@ import com.xActv4.accounting.dto.master.gl.GeneralLedger;
 /**
 * Domain Service that exposes General Ledger Service Operations
 *
-* @author  Seetharaman
+* @author  rookie
 * @version 4.0
 * @since   2016-12-13 
 */

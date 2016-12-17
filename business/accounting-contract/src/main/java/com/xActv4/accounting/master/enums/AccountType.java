@@ -3,7 +3,7 @@ package com.xActv4.accounting.master.enums;
 /**
 * The Enum defines a ledger type
 *
-* @author  Seetharaman
+* @author  rookie
 * @version 4.0
 * @since   2016-12-13 
 */

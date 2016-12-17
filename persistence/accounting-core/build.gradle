@@ -1,4 +1,39 @@
 apply plugin: 'java'
 
 dependencies {
+	compile group: 'org.springframework', name: 'spring-core', version: "${springVersion}"
+	compile group: 'org.springframework', name: 'spring-beans', version: "${springVersion}"
+	compile group: 'org.springframework', name: 'spring-orm', version: "${springVersion}"
+	compile group: 'org.springframework', name: 'spring-context', version: "${springVersion}"
+	compile group: 'org.springframework', name: 'spring-aop', version: "${springVersion}"
+	compile group: 'org.springframework', name: 'spring-tx', version: "${springVersion}"
+	compile group: 'org.springframework', name: 'spring-jdbc', version: "${springVersion}"
+	compile group: 'org.springframework', name: 'spring-expression', version: "${springVersion}"
+    compile group: 'org.springframework.data', name: 'spring-data-commons', version: "${springDataVersion}"
+	compile group: 'org.springframework.data', name: 'spring-data-jpa', version: "${springDataJPAVersion}"
+	compile group: 'org.hibernate', name: 'hibernate-core', version: "${hibernateVersion}"
+	compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: "${hibernateVersion}"
+	compile group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
+	compile group: 'commons-lang', name: 'commons-lang', version: "${commonsLangVersion}"
+
+    testCompile "junit:junit:${junitVersion}"
+    testCompile "org.springframework:spring-test:${springVersion}"
+	testCompile "org.springframework:spring-instrument:${springVersion}"
+	testCompile "org.mockito:mockito-all:${mockitoVersion}"
+	
+	testRuntime group: 'com.microsoft.sqlserver', name: 'sqljdbc4', version: "${sqljdbcVersion}"
+	testRuntime group: 'org.aspectj', name: 'aspectjrt', version: "${aspectjWeaverVersion}"
+    testRuntime group: 'org.aspectj', name: 'aspectjweaver', version: "${aspectjWeaverVersion}"
+    testRuntime group: 'org.springframework', name: 'spring-aspects', version: "${springVersion}"
+	
+	intgTestCompile sourceSets.main.output
+	intgTestCompile configurations.testCompile
+	intgTestCompile sourceSets.test.output
+	intgTestRuntime configurations.testRuntime
 }
+
+task intgTest(type: Test) {
+	testClassesDir = sourceSets.intgTest.output.classesDir
+	classpath = sourceSets.intgTest.runtimeClasspath
+}
+
