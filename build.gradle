@@ -1,0 +1,22 @@
+allprojects {
+	apply plugin: 'base'
+	apply plugin: 'maven-publish'
+
+	repositories {
+	    mavenCentral()
+	}
+}
+
+buildscript {
+	repositories {
+	    mavenCentral()
+	}
+	
+	dependencies {
+	
+	}
+}
+	
+
+ext.xActv4Version="4.0"
+ext.slf4jVersion="1.7.16"
