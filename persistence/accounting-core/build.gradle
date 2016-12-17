@@ -1,6 +1,9 @@
 apply plugin: 'java'
 
 dependencies {
+	
+	compile project(':business:accounting-contract')
+
 	compile group: 'org.springframework', name: 'spring-core', version: "${springVersion}"
 	compile group: 'org.springframework', name: 'spring-beans', version: "${springVersion}"
 	compile group: 'org.springframework', name: 'spring-orm', version: "${springVersion}"
@@ -20,8 +23,8 @@ dependencies {
     testCompile "org.springframework:spring-test:${springVersion}"
 	testCompile "org.springframework:spring-instrument:${springVersion}"
 	testCompile "org.mockito:mockito-all:${mockitoVersion}"
-	
-	testRuntime group: 'com.microsoft.sqlserver', name: 'sqljdbc4', version: "${sqljdbcVersion}"
+
+	testRuntime group: 'mysql', name: 'mysql-connector-java', version: "${mysqlConnectorVersion}"
 	testRuntime group: 'org.aspectj', name: 'aspectjrt', version: "${aspectjWeaverVersion}"
     testRuntime group: 'org.aspectj', name: 'aspectjweaver', version: "${aspectjWeaverVersion}"
     testRuntime group: 'org.springframework', name: 'spring-aspects', version: "${springVersion}"

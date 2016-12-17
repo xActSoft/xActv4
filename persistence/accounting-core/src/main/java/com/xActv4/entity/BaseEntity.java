@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
@@ -24,14 +26,13 @@ public abstract class BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="id", unique=true, nullable=false)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id", unique=true, nullable=false, updatable = false)
 	private Long id;
 	
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "CreDtTime")
 	private Timestamp createdDatetime;
 	
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "LastCngDtTime")
 	private Timestamp lastChangedDatetime;
 	
@@ -84,11 +85,11 @@ public abstract class BaseEntity implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder value = new StringBuilder();
-		value.append("Id: ["); value.append(id); value.append("]");
-		value.append("Created User Id: ["); value.append(createdByUserId); value.append("]");
-		value.append("Last Changed User Id: ["); value.append(lastChangedByUserId); value.append("]");
-		value.append("Created Timestamp: ["); value.append(createdDatetime); value.append("]");
-		value.append("Last Changed Timestamp: ["); value.append(lastChangedDatetime); value.append("]");
+		value.append("Id: ["); value.append(id); value.append("];");
+		value.append("Created User Id: ["); value.append(createdByUserId); value.append("];");
+		value.append("Last Changed User Id: ["); value.append(lastChangedByUserId); value.append("];");
+		value.append("Created Timestamp: ["); value.append(createdDatetime); value.append("];");
+		value.append("Last Changed Timestamp: ["); value.append(lastChangedDatetime); value.append("];");
 		value.append(this.objectValue());
 		return value.toString();
 	}
