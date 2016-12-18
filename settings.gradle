@@ -1,3 +1,4 @@
 include ':business:accounting-contract'
 include ':business:accounting-service'
 include ':persistence:accounting-core'
+include ':xActv4-web'

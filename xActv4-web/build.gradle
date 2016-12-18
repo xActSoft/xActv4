@@ -1,0 +1,12 @@
+apply plugin: 'java'
+apply plugin: 'war'
+
+dependencies {
+	
+	compile project(':business:accounting-contract')
+	compile project(':business:accounting-service')
+	compile project(':persistence:accounting-core')
+
+	// SLF4j
+	compile group: 'org.slf4j', name: 'slf4j-api', version: "${slf4jVersion}"
+}
