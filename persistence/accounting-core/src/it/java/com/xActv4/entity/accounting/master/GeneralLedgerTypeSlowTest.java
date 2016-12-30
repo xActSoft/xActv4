@@ -1,5 +1,7 @@
 package com.xActv4.entity.accounting.master;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
@@ -17,28 +19,41 @@ import com.xActv4.entity.repository.accounting.master.GeneralLedgerTypeRepositor
 @Transactional
 public class GeneralLedgerTypeSlowTest {
 	
+	private static final String SYSCODE = "syscode";
+	
 	@Autowired
 	private GeneralLedgerTypeRepository generalLedgerTypeRepository;
 
 	@Test
 	public void CRUDTest() {
+		createTest();
+		updateTest();
+		deleteTest();
+	}
+	
+	public void createTest() {
 		GeneralLedgerType generalLedgerType = createDummy();
 		GeneralLedgerType insertedEntity = generalLedgerTypeRepository.save(generalLedgerType);
-		
-		insertedEntity.setTypeName("another type name");
-		
-		GeneralLedgerType updatedEntity = generalLedgerTypeRepository.save(insertedEntity);
-		
-		generalLedgerTypeRepository.delete(updatedEntity);
-		
-		assertNull(generalLedgerTypeRepository.findOne(insertedEntity.getId()));
-		
+		assertNotNull(insertedEntity.getId());
 	}
+	
+	public void updateTest() {
+		GeneralLedgerType generalLedgerType = generalLedgerTypeRepository.findGeneralLedgerTypeBySysCode(SYSCODE);
+		generalLedgerType.setTypeName("another type name");
+		GeneralLedgerType updatedEntity = generalLedgerTypeRepository.save(generalLedgerType);
+		assertEquals("another type name", updatedEntity.getTypeName());
+	}
+
+	public void deleteTest() {
+		GeneralLedgerType generalLedgerType = generalLedgerTypeRepository.findGeneralLedgerTypeBySysCode(SYSCODE);
+		generalLedgerTypeRepository.delete(generalLedgerType);
+		assertNull(generalLedgerTypeRepository.findOne(generalLedgerType.getId()));
+	}
+
 
 	private GeneralLedgerType createDummy() {
 		GeneralLedgerType generalLedgerType = new GeneralLedgerType();
-		
-		generalLedgerType.setSystemCode("syscode");
+		generalLedgerType.setSystemCode(SYSCODE);
 		generalLedgerType.setTypeName("dummy type name");
 		generalLedgerType.setCategory(AccountCategory.ASSET);
 		return generalLedgerType;
