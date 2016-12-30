@@ -4,12 +4,11 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 /**
@@ -19,8 +18,8 @@ import javax.persistence.TemporalType;
 * @version 4.0
 * @since   2016-12-17
 */
-
 @MappedSuperclass
+@EntityListeners(BaseEntityListener.class)
 public abstract class BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;

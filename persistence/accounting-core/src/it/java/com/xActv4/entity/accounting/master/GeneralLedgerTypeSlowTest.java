@@ -2,9 +2,6 @@ package com.xActv4.entity.accounting.master;
 
 import static org.junit.Assert.assertNull;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,11 +41,6 @@ public class GeneralLedgerTypeSlowTest {
 		generalLedgerType.setSystemCode("syscode");
 		generalLedgerType.setTypeName("dummy type name");
 		generalLedgerType.setCategory(AccountCategory.ASSET);
-		Date date = Calendar.getInstance().getTime();
-		generalLedgerType.setCreatedDatetime(new java.sql.Timestamp(date.getTime()));
-		generalLedgerType.setLastChangedDatetime(new java.sql.Timestamp(date.getTime()));
-		generalLedgerType.setCreatedByUserId(1l);
-		generalLedgerType.setLastChangedByUserId(1l);
 		return generalLedgerType;
 	}
 }
